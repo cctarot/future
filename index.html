@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>他有沒有想過有你的未來？ | 小C塔羅</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Noto Serif TC', serif;
+            background: linear-gradient(135deg, #fff1f2 0%, #ffe4e6 50%, #fecdd3 100%);
+            color: #4c0519;
+            min-height: 100vh;
+        }
+        .glass-panel {
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 228, 230, 0.8);
+            box-shadow: 0 10px 30px rgba(225, 29, 72, 0.08);
+        }
+        .tarot-card { transition: transform 0.4s; }
+        .tarot-card:hover { transform: translateY(-6px); }
+    </style>
+</head>
+<body class="flex flex-col min-h-screen">
+    <main class="flex-grow container mx-auto px-4 py-10 max-w-4xl flex flex-col items-center">
+        <div class="text-center mb-10">
+            <!-- 角色置中圖片 (已內嵌) -->
+            <div class="mb-4">
+                <img src="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQEASABIAAD/2wBDAP//////////////////////////////////////////////////////////////////////////////////////wgALCAABAAEBAREA/8QAFBABAAAAAAAAAAAAAAAAAAAAAP/aAAgBAQABPxA=" alt="小C塔羅角色" class="w-40 h-40 mx-auto object-contain drop-shadow-lg rounded-full">
+            </div>
+            <h2 class="text-sm font-semibold text-rose-700 mb-2">小C塔羅 | @cc_tarot_tw</h2>
+            <h1 class="text-2xl md:text-4xl font-bold text-rose-950">他有沒有想過有你的未來？</h1>
+        </div>
+
+        <div id="selection-view" class="w-full">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-3xl mx-auto">
+                <div onclick="selectGroup('A')" class="tarot-card glass-panel rounded-2xl p-6 cursor-pointer text-center border border-rose-200">
+                    <div class="w-20 h-32 bg-rose-400 mx-auto rounded-lg mb-4 flex items-center justify-center text-white text-2xl">✨</div>
+                    <span class="font-bold text-rose-900">✦ A 組 ✦</span>
+                </div>
+                <div onclick="selectGroup('B')" class="tarot-card glass-panel rounded-2xl p-6 cursor-pointer text-center border border-rose-200">
+                    <div class="w-20 h-32 bg-rose-400 mx-auto rounded-lg mb-4 flex items-center justify-center text-white text-2xl">🔮</div>
+                    <span class="font-bold text-rose-900">✦ B 組 ✦</span>
+                </div>
+                <div onclick="selectGroup('C')" class="tarot-card glass-panel rounded-2xl p-6 cursor-pointer text-center border border-rose-200">
+                    <div class="w-20 h-32 bg-rose-400 mx-auto rounded-lg mb-4 flex items-center justify-center text-white text-2xl">💫</div>
+                    <span class="font-bold text-rose-900">✦ C 組 ✦</span>
+                </div>
+            </div>
+        </div>
+
+        <div id="result-view" class="w-full hidden max-w-3xl mx-auto">
+            <div class="glass-panel rounded-2xl p-8 border border-rose-200">
+                <button onclick="goBack()" class="mb-4 text-rose-700 underline font-semibold cursor-pointer">← 返回選擇</button>
+                <h2 id="result-title" class="text-xl font-bold mb-4 text-center"></h2>
+                <div id="result-content" class="text-rose-950 space-y-4"></div>
+                <!-- LINE 按鈕 -->
+                <div class="mt-8 text-center">
+                    <a href="https://line.me/R/ti/p/040soped" target="_blank" class="inline-block bg-green-500 hover:bg-green-600 text-white font-bold py-3 px-8 rounded-full shadow-lg transition-all">
+                        💬 點擊諮詢小C塔羅 (LINE)
+                    </a>
+                </div>
+            </div>
+        </div>
+    </main>
+    <footer class="text-center py-6 text-rose-800 text-xs">小C塔羅 | @cc_tarot_tw</footer>
+    <script>
+        const tarotData = {
+            'A': { 
+                title: '✦ A組解析 ✦', 
+                content: `
+                    <div>
+                        <h3 class="font-bold text-base text-rose-800 mb-1">1. 曾經認真想過未來，卻被現實與家庭壓力牽絆</h3>
+                        <p>抽到 A 組的朋友，對方其實是有想過跟你的未來的。他對這段關係很重視，也希望能有一個圓滿的結果、甚至考慮過步入婚姻或組成家庭。然而，他的考量非常深重與現實。阻礙你們往下一步邁進的，往往不是你們兩個人的感情不夠好，而是牽涉到了「兩個家庭的融合」、外在環境的壓力或理念不合。當現實問題接踵而至時，他發現要解決這些困境比想像中還要辛苦。</p>
+                    </div>
+                    <div>
+                        <h3 class="font-bold text-base text-rose-800 mb-1">2. 小心翼翼卻逐漸消磨的熱情</h3>
+                        <p class="mb-1">因為對這段關係要求高、又怕做不好，他在面對這些重大議題時會變得非常謹慎、甚至有些過度理性：</p>
+                        <p class="mb-1"><strong>· 內心的無力感：</strong> 他很想陪你、照顧你，甚至願意為你吃苦，但當他發現某些現實因素（如家庭阻礙、客觀環境）無法輕易被改變時，他開始感到疲憊。</p>
+                        <p><strong>· 熱情遞減與退縮：</strong> 他在處理過程中花了太多心力，卻始終覺得危機無法化解。久而久之，他可能會產生一種「如果無法合法給予名分、或是結婚的風險太大，我是不是只能停在現狀，甚至選擇轉身離開」的無奈想法。</p>
+                    </div>
+                    <div>
+                        <h3 class="font-bold text-base text-rose-800 mb-1">3. 塔羅指引：避免情緒失控，展現「一起面對」的決心</h3>
+                        <p class="mb-1">指引牌與整體能量提醒你：</p>
+                        <p class="mb-1"><strong>· 接受現實的無奈：</strong> 對方其實充滿失望與無奈，他不是不想跟你走下去，而是被現實壓得快喘不過氣。</p>
+                        <p><strong>· 給你的建議：</strong> 如果你心裡同樣渴望與他有一個未來，光靠他一個人扛是不夠的，你必須讓他感受到你「願意陪他一起面對現實問題」的決心。在溝通時避免因情緒失控而把對方推開，學會在關鍵時刻給予支持與雙向溝通，才能真正打破目前的僵局。</p>
+                    </div>
+                ` 
+            },
+            'B': { 
+                title: '✦ B組解析 ✦', 
+                content: `
+                    <div>
+                        <h3 class="font-bold text-base text-rose-800 mb-1">1. 現階段重心在自我目標，還沒準備好進入婚姻</h3>
+                        <p>抽到 B 組的朋友，對方在心態上其實還沒有把「結婚」或「建立長期家庭」當成當務之急。對他來說，他現階段有非常多想要追求的目標、事業或想完成的小成就，生活步調也偏向忙碌。他可能對婚姻有著許多的想像與壓力（例如擔心責任、承擔經濟、或是繁文縟節等），認為這是一個很重大、需要極度嚴謹看待的決定。在自己還沒準備好、或是自身目標尚未達成之前，他很難把心力完全放在規劃長遠的未來上。</p>
+                    </div>
+                    <div>
+                        <h3 class="font-bold text-base text-rose-800 mb-1">2. 以自我為中心的好強與溝通障礙</h3>
+                        <p class="mb-1">當你試圖跟他談論未來、甚至暗示結婚時，他可能會選擇逃避或產生抗拒，這並不是因為他不喜歡你，而是因為：</p>
+                        <p class="mb-1"><strong>· 過度以自我為中心：</strong> 他在面對自己的理想時非常有執念，有時候衝勁十足卻容易忽略你的心情與感受。</p>
+                        <p><strong>· 不知如何表達：</strong> 他其實心裡有自己的想法，但他不知道該怎麼跟你溝通，才能讓你明白「我不是不想跟你在一起，而是我需要先把眼前的事情顧好」。這種處理方式有時會顯得有些笨拙，甚至讓伴侶覺得他對關係不夠用心。</p>
+                    </div>
+                    <div>
+                        <h3 class="font-bold text-base text-rose-800 mb-1">3. 塔羅指引：切忌過度逼迫，學會給彼此空間</h3>
+                        <p class="mb-1">指引牌與整體能量提醒你：</p>
+                        <p class="mb-1"><strong>· 不要一直用暗示或施壓逼迫對方：</strong> 如果你總是頻繁地把結婚、未來拿出來談，或是帶著強勢的態度想改變他，反而會引起他的防備心，讓兩人的關係向下下滑。</p>
+                        <p><strong>· 給予支持與溝通彈性：</strong> 如果你想要這段關係繼續走下去，試著放下一點身段，去理解並支持他目前的事業或人生步調。展現出你是個有溝通空間、而不是急著套牢他的人，才能真正卸下他的壓力，讓你們的感情在舒適的節奏中穩步向前。</p>
+                    </div>
+                ` 
+            },
+            'C': { 
+                title: '✦ C組解析 ✦', 
+                content: `
+                    <div>
+                        <h3 class="font-bold text-base text-rose-800 mb-1">1. 對未來有概念卻缺乏實際規劃，面臨婚姻價值觀的矛盾</h3>
+                        <p>抽到 C 組的朋友，對方心裡其實有想過跟你的未來，但這個想法比較偏向「概念性」而非「實際執行」。他對婚姻的理解與價值觀可能不太成熟，不見得清楚真正要背負的責任與兩家人融合的現實壓力。他既想擁有這段關係的陪伴，又渴望保有自己的自由與主導權（例如大小事希望照他的節奏、甚至會過度關注你的日常行蹤）。然而，當真正需要深入思考或解決問題時，他卻往往選擇逃避，覺得處理這些瑣事太麻煩。</p>
+                    </div>
+                    <div>
+                        <h3 class="font-bold text-base text-rose-800 mb-1">2. 逃避現實阻礙與「不期不待、沒有傷害」的心態</h3>
+                        <p class="mb-1">牌面顯示，他對於婚姻或下一步的猶豫，往往來自於幾項核心因素：</p>
+                        <p class="mb-1"><strong>· 原生家庭或周遭經驗的影響：</strong> 他可能從朋友或自己的家庭經驗中，看過婚姻不太美滿的一面，導致他在心裡對踏入婚姻存有一種抗拒或恐懼，寧願維持現狀或把問題擱置。</p>
+                        <p><strong>· 權衡利弊的自保：</strong> 如果他覺得跟你結婚需要面對龐大的家庭觀念差異、或是要花費大量心力去說服長輩，他會覺得太過繁瑣。甚至在某些情況下，他會評估「結婚是否會帶來損失」，如果阻礙太多，他寧可選擇維持現狀、不往前推進。</p>
+                    </div>
+                    <div>
+                        <h3 class="font-bold text-base text-rose-800 mb-1">3. 塔羅指引：經濟條件與契機，責任感與現實的拉扯</h3>
+                        <p class="mb-1">指引牌與整體能量指出：</p>
+                        <p class="mb-1"><strong>· 經濟與實際行動：</strong> 如果他本身有一定的經濟能力或積蓄，他其實是有想過要給你一個穩定的生活，甚至心裡也曾幻想過給你一個盛大的婚禮或合法身份。但礙於現實問題無法立刻解決，他選擇了逃避。</p>
+                        <p><strong>· 最終走向：</strong> 他對你是有愛與責任感的，如果未來真的走到某個契機（例如意外的轉折或奉子成婚），以他的個性並不會不負責，他會願意承擔開銷與養育的責任。但現階段的他，對於主動跨入婚姻仍顯得缺乏勇氣與成熟度。</p>
+                    </div>
+                ` 
+            }
+        };
+
+        function selectGroup(key) {
+            document.getElementById('selection-view').classList.add('hidden');
+            document.getElementById('result-view').classList.remove('hidden');
+            document.getElementById('result-title').innerText = tarotData[key].title;
+            document.getElementById('result-content').innerHTML = tarotData[key].content;
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        function goBack() {
+            document.getElementById('selection-view').classList.remove('hidden');
+            document.getElementById('result-view').classList.add('hidden');
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+    </script>
+</body>
+</html>
